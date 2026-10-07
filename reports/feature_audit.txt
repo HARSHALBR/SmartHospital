@@ -1,0 +1,182 @@
+======================================================================
+  PHASE 1.5: FEATURE AUDIT & GRAPH DESIGN REPORT
+  Generated: 2026-09-16 18:16:34
+======================================================================
+
+TASK 1: FEATURE AUDIT (CLASSIFICATION OF ALL 63 COLUMNS)
+------------------------------------------------------------
+A. TARGETS (2 columns):
+  - Attack_label
+  - Attack_type
+
+B. GRAPH NODE IDENTIFIERS (5 columns):
+  - ip.src_host
+  - ip.dst_host
+  - arp.src.proto_ipv4
+  - arp.dst.proto_ipv4
+  - mbtcp.unit_id
+
+C. GRAPH EDGE/RELATIONSHIP FEATURES (4 columns):
+  - tcp.srcport
+  - tcp.dstport
+  - udp.port
+  - udp.stream
+
+D. NUMERICAL TRAFFIC FEATURES (8 columns):
+  - tcp.len
+  - mqtt.len
+  - mqtt.proto_len
+  - mqtt.topic_len
+  - mbtcp.len
+  - http.content_length
+  - dns.qry.name.len
+  - arp.hw.size
+
+E. PROTOCOL FEATURES (26 columns):
+  - arp.opcode
+  - icmp.unused
+  - http.request.method
+  - http.referer
+  - http.request.version
+  - http.response
+  - http.tls_port
+  - tcp.connection.fin
+  - tcp.connection.rst
+  - tcp.connection.syn
+  - tcp.connection.synack
+  - tcp.flags
+  - tcp.flags.ack
+  - dns.qry.qu
+  - dns.qry.type
+  - dns.retransmission
+  - dns.retransmit_request
+  - dns.retransmit_request_in
+  - mqtt.conack.flags
+  - mqtt.conflag.cleansess
+  - mqtt.conflags
+  - mqtt.hdrflags
+  - mqtt.msg_decoded_as
+  - mqtt.msgtype
+  - mqtt.protoname
+  - mqtt.ver
+
+F. TEMPORAL FEATURES (3 columns):
+  - frame.time
+  - icmp.transmit_timestamp
+  - udp.time_delta
+
+G. RAW/HIGH-CARDINALITY FEATURES (15 columns):
+  - tcp.payload
+  - tcp.options
+  - tcp.seq
+  - tcp.ack
+  - tcp.ack_raw
+  - tcp.checksum
+  - icmp.checksum
+  - icmp.seq_le
+  - http.request.full_uri
+  - http.request.uri.query
+  - dns.qry.name
+  - mqtt.msg
+  - mqtt.topic
+  - mbtcp.trans_id
+  - http.file_data
+
+H. FEATURES REQUIRING REVIEW (0 columns):
+  - (None currently)
+
+TASK 2: GRAPH REPRESENTATION DESIGN
+------------------------------------------------------------
+[NODE]
+  Network/device endpoints represented by unique IP addresses (ip.src_host, ip.dst_host). In IoT networks, MAC addresses (arp.src.proto_ipv4) or device IDs (mbtcp.unit_id) can also act as or enrich node identities.
+
+[EDGES]
+  Directed communication links between a source node and a destination node. An edge exists if there is traffic between the two IPs. Multiple packets between the same IPs can be aggregated into a single edge or represented as temporal multi-edges.
+
+[NODE_FEATURES]
+  Aggregated statistical features of the endpoint (e.g., total packets sent/received, average payload length, ratio of TCP vs UDP traffic, number of unique ports accessed).
+
+[EDGE_FEATURES]
+  Flow-specific communication features (e.g., tcp.dstport, tcp.srcport, tcp.flags, average tcp.len, connection states like tcp.connection.syn).
+
+[TEMPORAL]
+  Edges and Node activities are ordered by `frame.time`. `udp.time_delta` and `icmp.transmit_timestamp` can capture the cadence and latency of communications, useful for dynamic graph updates.
+
+[LABEL]
+  Node or Edge classification task. Attack_label (binary anomaly) and Attack_type (multiclass anomaly) act as the targets.
+
+TASK 3: HIGH-CARDINALITY FEATURES ANALYSIS
+------------------------------------------------------------
+Column          : tcp.payload
+Cardinality     : ~274,926
+Semantic Meaning: Raw application-layer payload data carried in TCP segments.
+Recommendation  : DERIVE_FEATURES
+Explanation     : High variance raw strings. Too sparse for standard ML encoding. For the 'Semantic Vectorization' part of the project (e.g., BioBERT), text from this payload could potentially be extracted and vectorized. For standard numerical models, this should be excluded or hashed.
+
+Column          : tcp.options
+Cardinality     : ~242,566
+Semantic Meaning: TCP header options (e.g., MSS, Window Scaling, Timestamps).
+Recommendation  : DERIVE_FEATURES
+Explanation     : Raw hex strings. Can be parsed into boolean flags (e.g., 'has_sack', 'mss_value') but should not be one-hot encoded directly due to extreme cardinality.
+
+Column          : tcp.seq
+Cardinality     : ~213,310
+Semantic Meaning: TCP sequence number tracking bytes sent.
+Recommendation  : EXCLUDE_FROM_MODEL
+Explanation     : Sequence numbers are arbitrary and change per connection. Including this directly will cause the model to memorize specific connections (severe overfitting/leakage) without learning generalizable patterns.
+
+Column          : udp.stream
+Cardinality     : ~120,450
+Semantic Meaning: Wireshark-assigned index for tracking unique UDP flows.
+Recommendation  : USE_FOR_GRAPH
+Explanation     : Arbitrary index assigned during packet capture. Meaningless as a numerical/categorical feature for the neural network. However, it is highly useful for grouping packets into edges or flow-level representations in the graph.
+
+Column          : ip.src_host
+Cardinality     : ~137,167
+Semantic Meaning: Source IP address of the packet.
+Recommendation  : USE_FOR_GRAPH
+Explanation     : Essential for defining Graph Nodes (endpoints). Should NOT be used directly as a one-hot encoded feature for the ML model, as the model will simply memorize the attacker's IP (major leakage).
+
+Column          : ip.dst_host
+Cardinality     : ~52,425
+Semantic Meaning: Destination IP address of the packet.
+Recommendation  : USE_FOR_GRAPH
+Explanation     : Essential for defining Graph Nodes. Same leakage risks as ip.src_host if passed directly to the classifier.
+
+TASK 4: PRELIMINARY LEAKAGE RISK CHECK
+------------------------------------------------------------
+- **IP Addresses (ip.src_host, ip.dst_host)**: Very high risk. In synthetic datasets, attacks often originate from a small set of specific attacker IPs. If the model sees the IP, it learns 'If IP == X, then Attack'. This fails in the real world (Smart Hospital) where attackers use different or spoofed IPs.
+- **Packet Sequence Numbers (tcp.seq, tcp.ack, icmp.seq_le)**: High risk. Attack scripts/tools often use hardcoded or predictable sequence numbers (e.g., hping3 defaults). Memorizing these leads to brittle models.
+- **Wireshark Artifacts (udp.stream, tcp.stream)**: High risk. These are generated by the capture tool sequentially. High stream numbers might correlate with later stages of a capture where attacks were run.
+- **Time (frame.time)**: Moderate risk. If all normal traffic was captured on Monday and all attacks on Tuesday, the timestamp itself becomes a perfect predictor. Must only be used for temporal sorting, not as an absolute feature.
+
+
+TASK 5: RECOMMENDED REPRESENTATION
+------------------------------------------------------------
+1. Recommended node definition:
+  -> Unique IP addresses derived from the union of `ip.src_host` and `ip.dst_host`.
+
+2. Recommended edge definition:
+  -> Directed links `(src_ip, dst_ip)`. Grouped by time windows or specific connections (tracked via ports/streams).
+
+3. Recommended node features:
+  -> Aggregations of numerical/protocol features (e.g., avg `tcp.len`, count of `tcp.connection.syn`=1). Semantic embeddings from `tcp.payload` (via BioBERT) can serve as rich, multi-modal node features.
+
+4. Recommended edge features:
+  -> Specific connection parameters: `tcp.srcport`, `tcp.dstport`, `tcp.flags`, protocol types (HTTP/MQTT/DNS flags).
+
+5. Recommended temporal features:
+  -> `frame.time` converted to a Unix timestamp to slice the graph into temporal snapshots (Dynamic Federated Graph).
+
+6. Features to exclude from the neural model:
+  -> `tcp.seq`, `tcp.ack`, `tcp.ack_raw`, `icmp.seq_le`, `icmp.checksum`, `tcp.checksum`.
+
+7. Features that should only be used for graph construction:
+  -> `ip.src_host`, `ip.dst_host`, `udp.stream`.
+
+8. Features requiring further investigation:
+  -> `tcp.payload` (how to correctly parse and extract clinical/semantic data), `tcp.options` (needs custom parsing function).
+
+======================================================================
+  STATUS: Phase 1.5 Complete. Awaiting User Approval.
+======================================================================

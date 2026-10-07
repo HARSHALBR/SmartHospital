@@ -1,0 +1,10 @@
+{
+    "train_row_count": 547528,
+    "val_row_count": 311625,
+    "test_row_count": 1360048,
+    "verification": {
+        "targets_excluded_from_model": true,
+        "leakage_excluded_from_model": true,
+        "flow_leakage_prevented": true
+    }
+}

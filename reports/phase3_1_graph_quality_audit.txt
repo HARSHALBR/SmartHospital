@@ -1,0 +1,262 @@
+=== 1_row_to_flow_edge ===
+A row becomes a flow edge by extracting ['protocol', 'ip.src_host', 'ip.dst_host', 'source_port', 'destination_port', 'udp_stream']. All rows within a temporal window (chunk of 25,000 records) matching this exact 6-tuple are aggregated into a single edge.
+
+=== 2_temporal_windows ===
+Temporal windows (chunks of 25,000 rows) serve as aggregation boundaries. The flow identity 6-tuple does NOT include a timestamp or window ID. If the same flow continues across multiple chunks, it will be broken into multiple edges in the final graph, creating duplicate spatial edges across different windows.
+
+=== 3_class_statistics ===
+{
+  "Normal": {
+    "original_row_count": 1615643,
+    "unique_flow_identities_global": 39,
+    "graph_edges": 973,
+    "temporal_windows": 91,
+    "average_rows_per_edge": 1645.2576374745418,
+    "median_rows_per_edge": 7.0,
+    "max_rows_per_edge": 7710
+  },
+  "DDoS_HTTP": {
+    "original_row_count": 49911,
+    "unique_flow_identities_global": 5,
+    "graph_edges": 99,
+    "temporal_windows": 90,
+    "average_rows_per_edge": 250.80904522613065,
+    "median_rows_per_edge": 201.0,
+    "max_rows_per_edge": 428
+  },
+  "DDoS_ICMP": {
+    "original_row_count": 116436,
+    "unique_flow_identities_global": 116413,
+    "graph_edges": 116428,
+    "temporal_windows": 91,
+    "average_rows_per_edge": 1.0,
+    "median_rows_per_edge": 1.0,
+    "max_rows_per_edge": 1
+  },
+  "Password": {
+    "original_row_count": 50153,
+    "unique_flow_identities_global": 6,
+    "graph_edges": 39,
+    "temporal_windows": 39,
+    "average_rows_per_edge": 208.97083333333333,
+    "median_rows_per_edge": 273.0,
+    "max_rows_per_edge": 327
+  },
+  "Uploading": {
+    "original_row_count": 37634,
+    "unique_flow_identities_global": 6,
+    "graph_edges": 0,
+    "temporal_windows": 0,
+    "average_rows_per_edge": 158.79324894514767,
+    "median_rows_per_edge": 197.0,
+    "max_rows_per_edge": 255
+  },
+  "DDoS_TCP": {
+    "original_row_count": 50062,
+    "unique_flow_identities_global": 50059,
+    "graph_edges": 50060,
+    "temporal_windows": 91,
+    "average_rows_per_edge": 1.0000199756297317,
+    "median_rows_per_edge": 1.0,
+    "max_rows_per_edge": 2
+  },
+  "DDoS_UDP": {
+    "original_row_count": 121568,
+    "unique_flow_identities_global": 11534,
+    "graph_edges": 11624,
+    "temporal_windows": 91,
+    "average_rows_per_edge": 10.458362009635238,
+    "median_rows_per_edge": 1.0,
+    "max_rows_per_edge": 1313
+  },
+  "Backdoor": {
+    "original_row_count": 24862,
+    "unique_flow_identities_global": 7,
+    "graph_edges": 26,
+    "temporal_windows": 26,
+    "average_rows_per_edge": 64.07731958762886,
+    "median_rows_per_edge": 10.5,
+    "max_rows_per_edge": 161
+  },
+  "Vulnerability_scanner": {
+    "original_row_count": 50110,
+    "unique_flow_identities_global": 12,
+    "graph_edges": 107,
+    "temporal_windows": 66,
+    "average_rows_per_edge": 164.83552631578948,
+    "median_rows_per_edge": 264.5,
+    "max_rows_per_edge": 326
+  },
+  "SQL_injection": {
+    "original_row_count": 51203,
+    "unique_flow_identities_global": 6,
+    "graph_edges": 22,
+    "temporal_windows": 21,
+    "average_rows_per_edge": 225.56387665198238,
+    "median_rows_per_edge": 278.0,
+    "max_rows_per_edge": 347
+  },
+  "XSS": {
+    "original_row_count": 15915,
+    "unique_flow_identities_global": 10,
+    "graph_edges": 96,
+    "temporal_windows": 69,
+    "average_rows_per_edge": 32.67967145790554,
+    "median_rows_per_edge": 5.0,
+    "max_rows_per_edge": 120
+  },
+  "Port_Scanning": {
+    "original_row_count": 22564,
+    "unique_flow_identities_global": 5,
+    "graph_edges": 1,
+    "temporal_windows": 1,
+    "average_rows_per_edge": 60.655913978494624,
+    "median_rows_per_edge": 34.0,
+    "max_rows_per_edge": 141
+  },
+  "Ransomware": {
+    "original_row_count": 10925,
+    "unique_flow_identities_global": 7,
+    "graph_edges": 31,
+    "temporal_windows": 31,
+    "average_rows_per_edge": 25.88862559241706,
+    "median_rows_per_edge": 13.0,
+    "max_rows_per_edge": 76
+  },
+  "MITM": {
+    "original_row_count": 1214,
+    "unique_flow_identities_global": 7,
+    "graph_edges": 269,
+    "temporal_windows": 90,
+    "average_rows_per_edge": 4.5130111524163565,
+    "median_rows_per_edge": 2.0,
+    "max_rows_per_edge": 23
+  },
+  "Fingerprinting": {
+    "original_row_count": 1001,
+    "unique_flow_identities_global": 6,
+    "graph_edges": 3,
+    "temporal_windows": 3,
+    "average_rows_per_edge": 3.7074074074074073,
+    "median_rows_per_edge": 3.0,
+    "max_rows_per_edge": 11
+  }
+}
+
+=== 4_normal_collapse ===
+Normal rows collapse significantly because the dataset contains many Normal packets continuously exchanged between a very small set of device IPs and ports (e.g., telemetry pings, background MQTT traffic). Since they share the exact same 6-tuple flow identity (Protocol, Src IP, Dst IP, Src Port, Dst Port, UDP Stream), they all collapse into a single flow edge per temporal window.
+
+=== 5_repeated_aggregation ===
+Yes, Normal traffic is repeatedly aggregated into the same flow identity across multiple temporal windows. If a device pair communicates continuously, the same flow edge appears once in every window it spans.
+
+=== 6_ddos_separation ===
+Yes. DDoS tools often generate randomized source ports or sequence numbers for each packet to evade caching and simple rules. Because 'source_port' is part of the flow identity, each packet gets a unique flow identity and becomes its own edge.
+
+=== 7_protocol_field ===
+Yes, 'protocol' is explicitly included in the flow_identity_cols.
+
+=== 8_protocol_collision ===
+Yes, because 'protocol' string ('TCP', 'UDP', 'ICMP', 'OTHER') is in the groupby key.
+
+=== 9_temporal_window_id ===
+Temporal window ID is currently NOT part of the edge identity 6-tuple. It only acts as a processing batch boundary. To make it a true dynamic temporal graph, edges must carry a temporal context.
+
+=== 10_graph_type ===
+B. flow-window-level graph. The graph is a mixture: it aggregates flows within 25,000-record windows. It is not a pure flow graph (because flows are broken across windows) and not a pure aggregated communication graph (because ports split the same IP pair into multiple edges).
+
+=== 11_class_distribution ===
+{
+  "row_level": {
+    "Normal": 1615643,
+    "DDoS_HTTP": 49911,
+    "DDoS_ICMP": 116436,
+    "Password": 50153,
+    "Uploading": 37634,
+    "DDoS_TCP": 50062,
+    "DDoS_UDP": 121568,
+    "Backdoor": 24862,
+    "Vulnerability_scanner": 50110,
+    "SQL_injection": 51203,
+    "XSS": 15915,
+    "Port_Scanning": 22564,
+    "Ransomware": 10925,
+    "MITM": 1214,
+    "Fingerprinting": 1001
+  },
+  "unique_flow_level": {
+    "Normal": 39,
+    "DDoS_HTTP": 5,
+    "DDoS_ICMP": 116413,
+    "Password": 6,
+    "Uploading": 6,
+    "DDoS_TCP": 50059,
+    "DDoS_UDP": 11534,
+    "Backdoor": 7,
+    "Vulnerability_scanner": 12,
+    "SQL_injection": 6,
+    "XSS": 10,
+    "Port_Scanning": 5,
+    "Ransomware": 7,
+    "MITM": 7,
+    "Fingerprinting": 6
+  },
+  "flow_window_level": {
+    "Normal": 973,
+    "MITM": 269,
+    "DDoS_ICMP": 116428,
+    "DDoS_TCP": 50060,
+    "DDoS_UDP": 11624,
+    "Vulnerability_scanner": 107,
+    "Backdoor": 26,
+    "DDoS_HTTP": 99,
+    "XSS": 96,
+    "Password": 39,
+    "Fingerprinting": 3,
+    "SQL_injection": 22,
+    "Ransomware": 31,
+    "Port_Scanning": 1
+  }
+}
+
+=== 12_leakage ===
+{
+  "flow_identity_intersection": {
+    "train_val": 50,
+    "train_test": 44,
+    "val_test": 37
+  },
+  "ip_intersection": {
+    "train_val": 341,
+    "train_test": 300,
+    "val_test": 90
+  }
+}
+
+=== 13_edge_purity ===
+{
+  "pure_normal_edges": 704,
+  "pure_attack_edges": 179074,
+  "mixed_label_edges": 278
+}
+
+=== 14_mixed_label_rule ===
+Yes, the graph labels function uses max() for binary labels and mode() for multiclass, effectively prioritizing the presence of attack if mixed (at least for binary). For multiclass, mode() might hide an attack if Normal packets outnumber Attack packets in the same edge! Wait, the config says label_aggregation_multiclass: 'mode'.
+
+=== 15_edge_features_aggregation ===
+Aggregated using config.get('edge_features_aggregation', 'mean').
+
+=== 16_edge_features_leakage ===
+['Attack_label', 'Attack_type']
+
+=== 17_node_features_leakage ===
+[]
+
+=== 18_diagnosis ===
+Diagnosis:
+- The graph representation has significant issues. Flow boundaries are arbitrarily sliced by the 25k-record chunking mechanism (windows), resulting in 'flow-window' fragments rather than true flows.
+- The extreme Normal collapse is expected because IIoT devices repeatedly communicate on the same ports over time. However, DDoS edges do NOT collapse because attack tools randomize source ports per packet.
+- This creates a huge class imbalance at the edge level: ~1.5M Normal rows collapse to ~973 edges, while ~160k DDoS packets become ~160k edges. The edge-level graph is completely dominated by attacks.
+- Multiclass label aggregation uses 'mode', which means an edge containing 10 Normal packets and 1 Attack packet will be labeled as Normal! This is highly dangerous.
+- Train/Val/Test splits exhibit severe leakage, with the exact same flow identities and IPs appearing across splits.
+- Redesign is REQUIRED before GraphSAGE: Temporal chunking should be time-based (e.g., 10-second windows) or flow-based, labels must use 'any attack' rather than 'mode', and data splitting must be grouped by flow or IP to prevent leakage.
+

@@ -1,0 +1,119 @@
+{
+    "Split_A_Phase3_2_Coarse": {
+        "Train": {
+            "Total_Rows": 547528,
+            "Normal_Pct": 0.006425242179395392,
+            "Attack_Pct": 0.9935747578206046,
+            "Unique_Flows": 239561,
+            "Unique_IPs": 123688,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "1982-06-17 18:00:00",
+            "Time_Max": "2075-09-24 18:00:00"
+        },
+        "Val": {
+            "Total_Rows": 311625,
+            "Normal_Pct": 0.8975338949057361,
+            "Attack_Pct": 0.10246610509426395,
+            "Unique_Flows": 26734,
+            "Unique_IPs": 26507,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "2021-01-01 00:00:06.541700",
+            "Time_Max": "2021-01-01 23:59:23.021800"
+        },
+        "Test": {
+            "Total_Rows": 1360048,
+            "Normal_Pct": 0.9796940990317988,
+            "Attack_Pct": 0.02030590096820112,
+            "Unique_Flows": 59761,
+            "Unique_IPs": 26508,
+            "Attack_Type_Coverage": 8,
+            "Time_Min": "2021-01-01 01:22:48.740200",
+            "Time_Max": "2021-01-01 23:24:32.818000"
+        },
+        "Overlap": {
+            "Flow_Train_Val": 0,
+            "Flow_Train_Test": 0,
+            "Flow_Val_Test": 0,
+            "IP_Train_Val": 3,
+            "IP_Train_Test": 5
+        }
+    },
+    "Split_B_Canonical_Flow": {
+        "Train": {
+            "Total_Rows": 1645399,
+            "Normal_Pct": 0.7382859719739711,
+            "Attack_Pct": 0.26171402802602894,
+            "Unique_Flows": 228239,
+            "Unique_IPs": 123922,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "1982-06-17 18:00:00",
+            "Time_Max": "2075-09-24 18:00:00"
+        },
+        "Val": {
+            "Total_Rows": 288303,
+            "Normal_Pct": 0.6951367138045736,
+            "Attack_Pct": 0.30486328619542635,
+            "Unique_Flows": 48908,
+            "Unique_IPs": 26708,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "1989-02-25 14:00:00",
+            "Time_Max": "2022-12-02 16:00:00"
+        },
+        "Test": {
+            "Total_Rows": 285499,
+            "Normal_Pct": 0.7021320565045762,
+            "Attack_Pct": 0.2978679434954238,
+            "Unique_Flows": 48909,
+            "Unique_IPs": 26686,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "2021-01-01 00:00:43.783500",
+            "Time_Max": "2038-05-11 22:00:00"
+        },
+        "Overlap": {
+            "Flow_Train_Val": 0,
+            "Flow_Train_Test": 0,
+            "Flow_Val_Test": 0,
+            "IP_Train_Val": 295,
+            "IP_Train_Test": 265
+        }
+    },
+    "Split_C_IID_Row_Level": {
+        "Train": {
+            "Total_Rows": 1553440,
+            "Normal_Pct": 0.7280294057060459,
+            "Attack_Pct": 0.27197059429395404,
+            "Unique_Flows": 253306,
+            "Unique_IPs": 124081,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "1982-06-17 18:00:00",
+            "Time_Max": "2075-02-17 16:00:00"
+        },
+        "Val": {
+            "Total_Rows": 332880,
+            "Normal_Pct": 0.7280281182408075,
+            "Attack_Pct": 0.2719718817591925,
+            "Unique_Flows": 96270,
+            "Unique_IPs": 26636,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "1982-12-17 15:00:00",
+            "Time_Max": "2075-02-21 22:00:00"
+        },
+        "Test": {
+            "Total_Rows": 332881,
+            "Normal_Pct": 0.7280289352651548,
+            "Attack_Pct": 0.27197106473484517,
+            "Unique_Flows": 96240,
+            "Unique_IPs": 26684,
+            "Attack_Type_Coverage": 15,
+            "Time_Min": "1990-09-24 16:00:00",
+            "Time_Max": "2075-09-24 18:00:00"
+        },
+        "Overlap": {
+            "Flow_Train_Val": 59325,
+            "Flow_Train_Test": 59210,
+            "Flow_Val_Test": 47694,
+            "IP_Train_Val": 341,
+            "IP_Train_Test": 300
+        }
+    }
+}

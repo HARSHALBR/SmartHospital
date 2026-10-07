@@ -1,0 +1,46 @@
+[
+    {
+        "Algorithm": "FedAvg",
+        "Mu": 0.0,
+        "Global_F1": 0.9927423768043132,
+        "Global_PR_AUC": 0.9894466519487944,
+        "Mean_Client_F1": 0.9877902009491472,
+        "Worst_Client_F1": 0.9652699518491956,
+        "Client_F1_Std": 0.0159430882892977,
+        "Mean_Divergence": 2.3440692,
+        "Training_Time": 124.03046464920044
+    },
+    {
+        "Algorithm": "FedProx",
+        "Mu": 0.001,
+        "Global_F1": 0.9927866499192536,
+        "Global_PR_AUC": 0.9904812681048716,
+        "Mean_Client_F1": 0.9878959300188784,
+        "Worst_Client_F1": 0.9656161926723034,
+        "Client_F1_Std": 0.0157738117637284,
+        "Mean_Divergence": 1.36722,
+        "Training_Time": 136.12426328659058
+    },
+    {
+        "Algorithm": "FedProx",
+        "Mu": 0.01,
+        "Global_F1": 0.9928757290264691,
+        "Global_PR_AUC": 0.9884317924056932,
+        "Mean_Client_F1": 0.9880609503030232,
+        "Worst_Client_F1": 0.9661112535247371,
+        "Client_F1_Std": 0.0155407330512655,
+        "Mean_Divergence": 0.8016899,
+        "Training_Time": 134.7195770740509
+    },
+    {
+        "Algorithm": "FedProx",
+        "Mu": 0.1,
+        "Global_F1": 0.9914957299423788,
+        "Global_PR_AUC": 0.9873812259811336,
+        "Mean_Client_F1": 0.9855665983872132,
+        "Worst_Client_F1": 0.9587298356317744,
+        "Client_F1_Std": 0.0189930281643126,
+        "Mean_Divergence": 0.40304688,
+        "Training_Time": 170.69711208343506
+    }
+]

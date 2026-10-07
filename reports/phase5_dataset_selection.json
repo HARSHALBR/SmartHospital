@@ -1,0 +1,38 @@
+{
+    "Original_Plan": "MIMIC-IV-Note",
+    "Availability": "Not Available (Requires PhysioNet Credentialing)",
+    "Action_Taken": "Dataset Selection Analysis for Public Alternatives",
+    "Candidates": {
+        "MTSamples": {
+            "source": "mtsamples.com",
+            "size": "~5,000",
+            "text_type": "Transcribed EHR clinical notes",
+            "biobert_suitability": "Excellent",
+            "relevance": "Extremely High (Structurally identical to MIMIC)"
+        },
+        "PubMed_200k_RCT": {
+            "source": "NIH/PubMed",
+            "size": "~200,000",
+            "text_type": "Biomedical literature abstracts",
+            "biobert_suitability": "Perfect",
+            "relevance": "Moderate (Lacks EHR formatting)"
+        },
+        "PMC_Patients": {
+            "source": "PubMed Central",
+            "size": "~167,000",
+            "text_type": "Clinical case reports",
+            "biobert_suitability": "Very High",
+            "relevance": "High"
+        }
+    },
+    "Selected_Dataset": {
+        "Name": "MTSamples",
+        "Reason": "It provides actual unstructured clinical notes (discharge summaries, H&P, consults), allowing accurate prototyping of tokenizer/pooling strategies that will transfer perfectly to MIMIC once authorized. It avoids the polished prose of PubMed literature."
+    },
+    "Client_Simulation_Strategy": {
+        "Concept": "Institution-level Non-IID Partitioning",
+        "Clinical_Modality": "Partition MTSamples by Medical Specialty to simulate specialized hospital wards.",
+        "IoT_Modality": "Partition Edge-IIoT canonical flows by Attack Type or Subnet to simulate distinct network threat landscapes.",
+        "Alignment": "No fake patient-to-device mappings. Modalities are aggregated at the model-weight level via FedAvg."
+    }
+}

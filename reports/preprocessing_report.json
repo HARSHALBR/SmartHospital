@@ -1,0 +1,113 @@
+{
+    "original_row_count": 2219201,
+    "processed_row_count": 2219201,
+    "targets": [
+        "Attack_label",
+        "Attack_type"
+    ],
+    "model_features": [
+        "arp.opcode",
+        "arp.hw.size",
+        "icmp.transmit_timestamp",
+        "icmp.unused",
+        "http.content_length",
+        "http.request.method",
+        "http.referer",
+        "http.request.version",
+        "http.response",
+        "http.tls_port",
+        "tcp.connection.fin",
+        "tcp.connection.rst",
+        "tcp.connection.syn",
+        "tcp.connection.synack",
+        "tcp.dstport",
+        "tcp.flags",
+        "tcp.flags.ack",
+        "tcp.len",
+        "tcp.srcport",
+        "udp.port",
+        "udp.time_delta",
+        "dns.qry.name.len",
+        "dns.qry.qu",
+        "dns.qry.type",
+        "dns.retransmission",
+        "dns.retransmit_request",
+        "dns.retransmit_request_in",
+        "mqtt.conack.flags",
+        "mqtt.conflag.cleansess",
+        "mqtt.conflags",
+        "mqtt.hdrflags",
+        "mqtt.len",
+        "mqtt.msg_decoded_as",
+        "mqtt.msgtype",
+        "mqtt.proto_len",
+        "mqtt.protoname",
+        "mqtt.topic_len",
+        "mqtt.ver",
+        "mbtcp.len",
+        "mbtcp.trans_id"
+    ],
+    "graph_identifiers": [
+        "ip.src_host",
+        "ip.dst_host",
+        "udp.stream",
+        "arp.src.proto_ipv4",
+        "arp.dst.proto_ipv4",
+        "mbtcp.unit_id"
+    ],
+    "excluded_columns": [
+        "tcp.seq",
+        "tcp.ack",
+        "tcp.ack_raw",
+        "icmp.seq_le",
+        "icmp.checksum",
+        "tcp.checksum"
+    ],
+    "high_cardinality_columns": [
+        "tcp.payload",
+        "tcp.options",
+        "http.request.full_uri",
+        "http.request.uri.query",
+        "dns.qry.name",
+        "mqtt.msg",
+        "mqtt.topic",
+        "http.file_data"
+    ],
+    "categorical_encoding_strategy": "OrdinalEncoder (Integer IDs for graph embedding layers)",
+    "numerical_scaling_strategy": "StandardScaler (Fitted on train only)",
+    "split_strategy": "Chronological (First 70% Train, Next 15% Val, Last 15% Test) to prevent future leakage.",
+    "train_samples": 1553440,
+    "val_samples": 332880,
+    "test_samples": 332881,
+    "train_class_distribution": {
+        "Normal": 1553440
+    },
+    "val_class_distribution": {
+        "Normal": 62203,
+        "SQL_injection": 51203,
+        "Password": 50153,
+        "DDoS_TCP": 50062,
+        "DDoS_HTTP": 49911,
+        "Uploading": 37634,
+        "Port_Scanning": 19575,
+        "Ransomware": 10925,
+        "MITM": 1214
+    },
+    "test_class_distribution": {
+        "DDoS_UDP": 121568,
+        "DDoS_ICMP": 116436,
+        "Vulnerability_scanner": 50110,
+        "Backdoor": 24862,
+        "XSS": 15915,
+        "Port_Scanning": 2989,
+        "Fingerprinting": 1001
+    },
+    "leakage_checks": {
+        "targets_in_model_features": false,
+        "graph_identifiers_in_model_features": false,
+        "excluded_cols_in_model_features": false,
+        "high_cardinality_in_model_features": false,
+        "scalers_fitted_on_test": false,
+        "temporal_leakage_prevented": true
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "global_comparison": [
+        {
+            "Metric": "Global F1",
+            "FedAvg": 0.9923239714480432,
+            "Personalized FL": 0.9927938613042931,
+            "Delta": 0.0004698898562498
+        },
+        {
+            "Metric": "Mean Client F1",
+            "FedAvg": 0.987017419377326,
+            "Personalized FL": 0.9878060904337116,
+            "Delta": 0.0007886710563858
+        },
+        {
+            "Metric": "Worst Client F1",
+            "FedAvg": 0.962951607133732,
+            "Personalized FL": 0.9653176203028894,
+            "Delta": 0.0023660131691574
+        },
+        {
+            "Metric": "Client F1 Std",
+            "FedAvg": 0.0170347560566733,
+            "Personalized FL": 0.0159206437951125,
+            "Delta": -0.0011141122615608
+        },
+        {
+            "Metric": "Global Precision",
+            "FedAvg": 0.984764888050404,
+            "Personalized FL": 0.9871703237795726,
+            "Delta": 0.0024054357291686
+        },
+        {
+            "Metric": "Global Recall",
+            "FedAvg": 1.0,
+            "Personalized FL": 0.998481836255196,
+            "Delta": -0.0015181637448039
+        },
+        {
+            "Metric": "Global PR-AUC",
+            "FedAvg": 0.9889997282264776,
+            "Personalized FL": 0.9877562487615882,
+            "Delta": -0.0012434794648895
+        },
+        {
+            "Metric": "Global ROC-AUC",
+            "FedAvg": 0.9868863453244396,
+            "Personalized FL": 0.983562236125876,
+            "Delta": -0.0033241091985635
+        }
+    ],
+    "client_comparison": [
+        {
+            "Client": 1,
+            "FedAvg_F1": 0.9981006509982456,
+            "Personalized_F1": 0.9981006509982456,
+            "Improvement": 0.0
+        },
+        {
+            "Client": 2,
+            "FedAvg_F1": 0.962951607133732,
+            "Personalized_F1": 0.9653176203028894,
+            "Improvement": 0.0023660131691574
+        },
+        {
+            "Client": 3,
+            "FedAvg_F1": 1.0,
+            "Personalized_F1": 1.0,
+            "Improvement": 0.0
+        }
+    ],
+    "parameter_drift": [
+        {
+            "Client": 1,
+            "L2_Divergence": 2.8717945317736544
+        },
+        {
+            "Client": 2,
+            "L2_Divergence": 3.411353541237699
+        },
+        {
+            "Client": 3,
+            "L2_Divergence": 3.3855402235414958
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+[
+    {
+        "Severity": "Iid",
+        "Mean_JSD": 0.0889854542130913,
+        "Global_F1": 0.9931076569623434,
+        "Global_PR_AUC": 0.9908995861173772,
+        "Mean_Client_F1": 0.993105050438516,
+        "Worst_Client_F1": 0.983990550152052,
+        "Client_F1_Std": 0.0067216280356304
+    },
+    {
+        "Severity": "Mild",
+        "Mean_JSD": 0.1132186041183178,
+        "Global_F1": 0.9931253589890868,
+        "Global_PR_AUC": 0.991061314523142,
+        "Mean_Client_F1": 0.993788503414848,
+        "Worst_Client_F1": 0.98491122852111,
+        "Client_F1_Std": 0.0064419219015464
+    },
+    {
+        "Severity": "Moderate",
+        "Mean_JSD": 0.1181267736507133,
+        "Global_F1": 0.9929561667190092,
+        "Global_PR_AUC": 0.9903515549960634,
+        "Mean_Client_F1": 0.991442824915859,
+        "Worst_Client_F1": 0.9767011043819024,
+        "Client_F1_Std": 0.0104688772422955
+    },
+    {
+        "Severity": "Severe",
+        "Mean_JSD": 0.1678314911732963,
+        "Global_F1": 0.9923239714480432,
+        "Global_PR_AUC": 0.9895672161400396,
+        "Mean_Client_F1": 0.987017419377326,
+        "Worst_Client_F1": 0.962951607133732,
+        "Client_F1_Std": 0.0170347560566733
+    }
+]

@@ -1,0 +1,85 @@
+=== PHASE 3 GRAPH CONSTRUCTION REPORT ===
+
+TERMINOLOGY DOCUMENTATION:
+Ports are used as flow/topology identifiers and are currently excluded from the neural feature vector to prevent the model from relying excessively on endpoint-specific communication patterns.
+
+METRICS:
+raw_records_processed: 2219201
+total_graph_windows: 91
+total_unique_nodes: 176695
+total_flow_edges: 179778
+avg_records_per_edge: 12.344118857702277
+median_records_per_edge: 1.0
+max_records_per_edge: 7710.0
+node_feature_dimension: 74
+edge_feature_dimension: 37
+pure_normal_edges: 704
+pure_attack_edges: 179074
+mixed_normal_attack_edges: 278
+disk_size_bytes: 245129927
+peak_process_memory_mb: 0.0
+
+BINARY DISTRIBUTION:
+  0: 704
+  1: 179074
+
+MULTICLASS DISTRIBUTION:
+  Normal: 973
+  MITM: 269
+  DDoS_ICMP: 116428
+  DDoS_TCP: 50060
+  DDoS_UDP: 11624
+  Vulnerability_scanner: 107
+  Backdoor: 26
+  DDoS_HTTP: 99
+  XSS: 96
+  Password: 39
+  Fingerprinting: 3
+  SQL_injection: 22
+  Ransomware: 31
+  Port_Scanning: 1
+
+EDGE DISTRIBUTION PER SPLIT:
+  train:
+    Normal: 674
+    MITM: 181
+    DDoS_ICMP: 81500
+    DDoS_TCP: 35041
+    DDoS_UDP: 8221
+    Vulnerability_scanner: 65
+    Backdoor: 19
+    DDoS_HTTP: 68
+    XSS: 66
+    Password: 25
+    Fingerprinting: 3
+    SQL_injection: 15
+    Ransomware: 23
+    Port_Scanning: 1
+  val:
+    Normal: 152
+    MITM: 43
+    DDoS_ICMP: 17463
+    DDoS_UDP: 1670
+    DDoS_TCP: 7509
+    Vulnerability_scanner: 25
+    Password: 6
+    DDoS_HTTP: 16
+    XSS: 16
+    SQL_injection: 4
+    Backdoor: 2
+    Ransomware: 3
+  test:
+    Normal: 147
+    MITM: 45
+    DDoS_ICMP: 17465
+    DDoS_UDP: 1733
+    DDoS_TCP: 7510
+    Password: 8
+    Ransomware: 5
+    DDoS_HTTP: 15
+    XSS: 14
+    Vulnerability_scanner: 17
+    Backdoor: 5
+    SQL_injection: 3
+
+NOTE: The final edge-level class distribution will naturally differ from the raw row-level distribution because multiple packets belonging to the same flow are collapsed into a single edge.

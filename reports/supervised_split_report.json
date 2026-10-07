@@ -1,0 +1,238 @@
+{
+    "train_row_count": 1553440,
+    "val_row_count": 332880,
+    "test_row_count": 332881,
+    "attack_label_distribution": {
+        "train": {
+            "0": {
+                "count": 1130950,
+                "percentage": 72.8029
+            },
+            "1": {
+                "count": 422490,
+                "percentage": 27.1971
+            }
+        },
+        "val": {
+            "0": {
+                "count": 242346,
+                "percentage": 72.8028
+            },
+            "1": {
+                "count": 90534,
+                "percentage": 27.1972
+            }
+        },
+        "test": {
+            "0": {
+                "count": 242347,
+                "percentage": 72.8029
+            },
+            "1": {
+                "count": 90534,
+                "percentage": 27.1971
+            }
+        }
+    },
+    "attack_type_distribution": {
+        "train": {
+            "Normal": {
+                "count": 1130950,
+                "percentage": 72.8029
+            },
+            "DDoS_UDP": {
+                "count": 85098,
+                "percentage": 5.478
+            },
+            "DDoS_ICMP": {
+                "count": 81505,
+                "percentage": 5.2467
+            },
+            "SQL_injection": {
+                "count": 35842,
+                "percentage": 2.3073
+            },
+            "Password": {
+                "count": 35107,
+                "percentage": 2.26
+            },
+            "Vulnerability_scanner": {
+                "count": 35077,
+                "percentage": 2.258
+            },
+            "DDoS_TCP": {
+                "count": 35043,
+                "percentage": 2.2558
+            },
+            "DDoS_HTTP": {
+                "count": 34938,
+                "percentage": 2.2491
+            },
+            "Uploading": {
+                "count": 26344,
+                "percentage": 1.6958
+            },
+            "Backdoor": {
+                "count": 17403,
+                "percentage": 1.1203
+            },
+            "Port_Scanning": {
+                "count": 15795,
+                "percentage": 1.0168
+            },
+            "XSS": {
+                "count": 11140,
+                "percentage": 0.7171
+            },
+            "Ransomware": {
+                "count": 7647,
+                "percentage": 0.4923
+            },
+            "MITM": {
+                "count": 850,
+                "percentage": 0.0547
+            },
+            "Fingerprinting": {
+                "count": 701,
+                "percentage": 0.0451
+            }
+        },
+        "val": {
+            "Normal": {
+                "count": 242346,
+                "percentage": 72.8028
+            },
+            "DDoS_UDP": {
+                "count": 18235,
+                "percentage": 5.478
+            },
+            "DDoS_ICMP": {
+                "count": 17465,
+                "percentage": 5.2466
+            },
+            "SQL_injection": {
+                "count": 7680,
+                "percentage": 2.3071
+            },
+            "Password": {
+                "count": 7523,
+                "percentage": 2.26
+            },
+            "Vulnerability_scanner": {
+                "count": 7516,
+                "percentage": 2.2579
+            },
+            "DDoS_TCP": {
+                "count": 7509,
+                "percentage": 2.2558
+            },
+            "DDoS_HTTP": {
+                "count": 7487,
+                "percentage": 2.2492
+            },
+            "Uploading": {
+                "count": 5645,
+                "percentage": 1.6958
+            },
+            "Backdoor": {
+                "count": 3730,
+                "percentage": 1.1205
+            },
+            "Port_Scanning": {
+                "count": 3385,
+                "percentage": 1.0169
+            },
+            "XSS": {
+                "count": 2388,
+                "percentage": 0.7174
+            },
+            "Ransomware": {
+                "count": 1639,
+                "percentage": 0.4924
+            },
+            "MITM": {
+                "count": 182,
+                "percentage": 0.0547
+            },
+            "Fingerprinting": {
+                "count": 150,
+                "percentage": 0.0451
+            }
+        },
+        "test": {
+            "Normal": {
+                "count": 242347,
+                "percentage": 72.8029
+            },
+            "DDoS_UDP": {
+                "count": 18235,
+                "percentage": 5.4779
+            },
+            "DDoS_ICMP": {
+                "count": 17466,
+                "percentage": 5.2469
+            },
+            "SQL_injection": {
+                "count": 7681,
+                "percentage": 2.3074
+            },
+            "Password": {
+                "count": 7523,
+                "percentage": 2.26
+            },
+            "Vulnerability_scanner": {
+                "count": 7517,
+                "percentage": 2.2582
+            },
+            "DDoS_TCP": {
+                "count": 7510,
+                "percentage": 2.2561
+            },
+            "DDoS_HTTP": {
+                "count": 7486,
+                "percentage": 2.2489
+            },
+            "Uploading": {
+                "count": 5645,
+                "percentage": 1.6958
+            },
+            "Backdoor": {
+                "count": 3729,
+                "percentage": 1.1202
+            },
+            "Port_Scanning": {
+                "count": 3384,
+                "percentage": 1.0166
+            },
+            "XSS": {
+                "count": 2387,
+                "percentage": 0.7171
+            },
+            "Ransomware": {
+                "count": 1639,
+                "percentage": 0.4924
+            },
+            "MITM": {
+                "count": 182,
+                "percentage": 0.0547
+            },
+            "Fingerprinting": {
+                "count": 150,
+                "percentage": 0.0451
+            }
+        }
+    },
+    "grouped_splitting_possible": false,
+    "grouped_splitting_rationale": "While classes have >=3 flows, flow sizes are extremely imbalanced. Standard grouped splitting algorithms do not support strict multi-class stratification over widely varying group sizes. Attempting it severely damages class representation (e.g. one massive flow absorbs 90% of an attack type). Resorting to row-level stratified split.",
+    "remaining_leakage_risks": "Row-level stratified splitting causes packets from the exact same network flow or attack session to appear across Train, Val, and Test splits. The neural network might memorize packet sequences or flow-specific artifacts (like overlapping timestamps, identical numerical payloads) rather than learning generalized attack signatures. This leads to artificially high evaluation metrics that may not generalize to entirely novel flows.",
+    "verification": {
+        "targets_excluded_from_model": true,
+        "graph_identifiers_excluded_from_model": true,
+        "preprocessing_fitted_only_on_train": true,
+        "raw_dataset_unchanged": true
+    },
+    "comparison": {
+        "A_chronological": "Intended for Anomaly Detection (e.g., Autoencoders, One-Class SVM). Perfectly prevents temporal leakage and represents real-world deployment (training on normal history, testing on future unknown attacks), but supervised models fail because train contains no attacks.",
+        "B_supervised_stratified": "Intended for Supervised Classification (e.g., standard GraphSAGE node classification). Guarantees all attack types are seen in training, but suffers from flow-level leakage because packets from the same attack session appear in both train and test."
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "Data_Locality_Status": "Verified",
+    "Raw_IoT_Data_Transmitted": false,
+    "Clinical_Text_Transmitted": false,
+    "IP_Addresses_Transmitted": false,
+    "Server_Payload": [
+        "client_id",
+        "sample_count",
+        "model_update (parameter tensors)"
+    ]
+}

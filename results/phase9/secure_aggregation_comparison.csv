@@ -1,0 +1,2 @@
+Parameter_Count,Standard_FedAvg_Time_sec,Secure_Agg_Time_sec,Time_Overhead_Ratio,Communication_Payload_Ratio,Memory_Overhead_Ratio
+10000,0.00019216537475585938,0.0006337165832519531,3.297749588381775,1.0,3.0

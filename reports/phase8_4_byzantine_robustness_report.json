@@ -1,0 +1,122 @@
+[
+    {
+        "Aggregator": "fedavg",
+        "Scenario": "Clean",
+        "Global_F1": 0.9923239714480432,
+        "Global_PR_AUC": 0.9895672161400396,
+        "Global_Precision": 0.984764888050404,
+        "Global_Recall": 1.0,
+        "Global_ROC_AUC": 0.9870522225904876,
+        "Mean_Client_F1": 0.987017419377326,
+        "Worst_Client_F1": 0.962951607133732,
+        "Client_F1_Std": 0.0170347560566733
+    },
+    {
+        "Aggregator": "fedavg",
+        "Scenario": "Attack_C1",
+        "Global_F1": 0.8087861150803332,
+        "Global_PR_AUC": 0.7898863284823668,
+        "Global_Precision": 0.7808115473907338,
+        "Global_Recall": 0.8388396891378999,
+        "Global_ROC_AUC": 0.5877269429723185,
+        "Mean_Client_F1": 0.7861264895928978,
+        "Worst_Client_F1": 0.4707488565772407,
+        "Client_F1_Std": 0.2254699714248119
+    },
+    {
+        "Aggregator": "fedavg",
+        "Scenario": "Attack_C2",
+        "Global_F1": 0.4054470045000058,
+        "Global_PR_AUC": 0.6474965099766959,
+        "Global_Precision": 0.5793626809039321,
+        "Global_Recall": 0.3118380625338875,
+        "Global_ROC_AUC": 0.2472172316187573,
+        "Mean_Client_F1": 0.3619831101374542,
+        "Worst_Client_F1": 0.2455711667684789,
+        "Client_F1_Std": 0.0941203062084951
+    },
+    {
+        "Aggregator": "fedavg",
+        "Scenario": "Attack_C3",
+        "Global_F1": 0.9362055306145548,
+        "Global_PR_AUC": 0.9661451346752324,
+        "Global_Precision": 0.978973529527792,
+        "Global_Recall": 0.8970178926441352,
+        "Global_ROC_AUC": 0.9346331851494084,
+        "Mean_Client_F1": 0.9050357528969256,
+        "Worst_Client_F1": 0.7883279836591771,
+        "Client_F1_Std": 0.082553015149782
+    },
+    {
+        "Aggregator": "fedavg",
+        "Scenario": "Attack_C1_C2_Extreme",
+        "Global_F1": 0.3945447651547467,
+        "Global_PR_AUC": 0.7392887447244058,
+        "Global_Precision": 0.5727998348585976,
+        "Global_Recall": 0.3009036688957166,
+        "Global_ROC_AUC": 0.5545393063695748,
+        "Mean_Client_F1": 0.365038598479372,
+        "Worst_Client_F1": 0.2949165120593692,
+        "Client_F1_Std": 0.0654182505255635
+    },
+    {
+        "Aggregator": "median",
+        "Scenario": "Clean",
+        "Global_F1": 0.9929202745749024,
+        "Global_PR_AUC": 0.9903288252443244,
+        "Global_Precision": 0.9859752294395436,
+        "Global_Recall": 0.9999638532441714,
+        "Global_ROC_AUC": 0.9876752223109676,
+        "Mean_Client_F1": 0.9881435239144354,
+        "Worst_Client_F1": 0.9663589743589744,
+        "Client_F1_Std": 0.0154241074007063
+    },
+    {
+        "Aggregator": "median",
+        "Scenario": "Attack_C1",
+        "Global_F1": 0.8904710721761127,
+        "Global_PR_AUC": 0.711112521401254,
+        "Global_Precision": 0.8053472496308965,
+        "Global_Recall": 0.9957166094343032,
+        "Global_ROC_AUC": 0.5752152594736494,
+        "Mean_Client_F1": 0.9355531258179112,
+        "Worst_Client_F1": 0.8419048554899095,
+        "Client_F1_Std": 0.0677645916983666
+    },
+    {
+        "Aggregator": "median",
+        "Scenario": "Attack_C2",
+        "Global_F1": 0.8918321580945751,
+        "Global_PR_AUC": 0.7904784614553798,
+        "Global_Precision": 0.8077312255282956,
+        "Global_Recall": 0.995481655521417,
+        "Global_ROC_AUC": 0.5819944491717117,
+        "Mean_Client_F1": 0.8597659460721175,
+        "Worst_Client_F1": 0.5812988822393211,
+        "Client_F1_Std": 0.1969076437893994
+    },
+    {
+        "Aggregator": "median",
+        "Scenario": "Attack_C3",
+        "Global_F1": 0.9930794294792966,
+        "Global_PR_AUC": 0.989240145156204,
+        "Global_Precision": 0.9864650391426076,
+        "Global_Recall": 0.999783119465028,
+        "Global_ROC_AUC": 0.9877856312856907,
+        "Mean_Client_F1": 0.9884362778171456,
+        "Worst_Client_F1": 0.9673242909987668,
+        "Client_F1_Std": 0.0149473438195084
+    },
+    {
+        "Aggregator": "median",
+        "Scenario": "Attack_C1_C2_Extreme",
+        "Global_F1": 0.04529075107751,
+        "Global_PR_AUC": 0.7910378106835856,
+        "Global_Precision": 1.0,
+        "Global_Recall": 0.0231700704861738,
+        "Global_ROC_AUC": 0.5905154543518113,
+        "Mean_Client_F1": 0.0751949228638445,
+        "Worst_Client_F1": 0.0074676546354453,
+        "Client_F1_Std": 0.0810363609939316
+    }
+]

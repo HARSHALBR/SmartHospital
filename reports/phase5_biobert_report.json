@@ -1,0 +1,43 @@
+{
+    "Model": {
+        "name": "emilyalsentzer/Bio_ClinicalBERT",
+        "framework": "transformers",
+        "hidden_dimension": 768,
+        "max_sequence_length": 512
+    },
+    "Strategy": {
+        "long_note_handling": "Chunking",
+        "chunk_size": 510,
+        "overlap": 50,
+        "aggregation": "Mean over chunks"
+    },
+    "Execution": {
+        "total_records_processed": 100,
+        "runtime_seconds": 294.3327395915985,
+        "memory_allocated_MB": 0.0
+    },
+    "Diagnostics": {
+        "CLS_Pooling": {
+            "shape": [
+                100,
+                768
+            ],
+            "has_nan": false,
+            "has_inf": false,
+            "PCA_2D_variance_explained": 0.4847223162651062
+        },
+        "Mean_Pooling": {
+            "shape": [
+                100,
+                768
+            ],
+            "has_nan": false,
+            "has_inf": false,
+            "PCA_2D_variance_explained": 0.422860324382782
+        }
+    },
+    "Decision": {
+        "Selected_Pooling": "Mean_Pooling",
+        "Reason": "Mean pooling over non-padding tokens typically preserves richer semantic information for long clinical notes than the CLS token, which is often undertrained for long-document tasks."
+    }
+}

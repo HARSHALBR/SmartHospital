@@ -1,0 +1,250 @@
+{
+    "1_edge_label_distribution": {
+        "train": {
+            "Normal": 120613,
+            "Attack": 260952,
+            "Normal_Pct": 0.31610079540838387,
+            "Attack_types": {
+                "MITM": 7,
+                "DDoS_UDP": 45562,
+                "Ransomware": 2191,
+                "Normal": 120613,
+                "Password": 31204,
+                "DDoS_HTTP": 26585,
+                "MIXED_ATTACK": 601,
+                "Port_Scanning": 14372,
+                "XSS": 2062,
+                "Backdoor": 2477,
+                "DDoS_TCP": 35043,
+                "Vulnerability_scanner": 2074,
+                "SQL_injection": 6252,
+                "Fingerprinting": 348,
+                "Uploading": 10671,
+                "DDoS_ICMP": 81503
+            }
+        },
+        "val": {
+            "Normal": 25264,
+            "Attack": 55630,
+            "Normal_Pct": 0.31230993646005883,
+            "Attack_types": {
+                "MITM": 2,
+                "DDoS_UDP": 9759,
+                "Ransomware": 746,
+                "Normal": 25264,
+                "Password": 6743,
+                "DDoS_HTTP": 5676,
+                "Port_Scanning": 2996,
+                "XSS": 413,
+                "MIXED_ATTACK": 3,
+                "Backdoor": 249,
+                "DDoS_TCP": 7509,
+                "Vulnerability_scanner": 451,
+                "SQL_injection": 1295,
+                "Fingerprinting": 41,
+                "Uploading": 2284,
+                "DDoS_ICMP": 17463
+            }
+        },
+        "test": {
+            "Normal": 25760,
+            "Attack": 55330,
+            "Normal_Pct": 0.31767172277716116,
+            "Attack_types": {
+                "DDoS_UDP": 9757,
+                "MITM": 1,
+                "Ransomware": 225,
+                "Normal": 25760,
+                "Password": 6615,
+                "DDoS_HTTP": 5648,
+                "MIXED_ATTACK": 25,
+                "Port_Scanning": 3076,
+                "XSS": 485,
+                "Backdoor": 384,
+                "DDoS_TCP": 7509,
+                "Vulnerability_scanner": 453,
+                "SQL_injection": 1332,
+                "Fingerprinting": 47,
+                "Uploading": 2309,
+                "DDoS_ICMP": 17464
+            }
+        }
+    },
+    "2_flow_statistics": {
+        "train": {
+            "total_edges": 381565,
+            "packets_per_edge": {
+                "mean": 4.31223775765597,
+                "median": 1.0,
+                "p95": 8.0,
+                "maximum": 3388
+            }
+        },
+        "val": {
+            "total_edges": 80894,
+            "packets_per_edge": {
+                "mean": 3.56396024427028,
+                "median": 1.0,
+                "p95": 8.0,
+                "maximum": 506
+            }
+        },
+        "test": {
+            "total_edges": 81090,
+            "packets_per_edge": {
+                "mean": 3.520767048957948,
+                "median": 1.0,
+                "p95": 8.0,
+                "maximum": 79
+            }
+        }
+    },
+    "3_feature_leakage": {
+        "node_features": [
+            "arp.opcode",
+            "arp.hw.size",
+            "icmp.transmit_timestamp",
+            "icmp.unused",
+            "http.content_length",
+            "http.response",
+            "http.tls_port",
+            "tcp.connection.fin",
+            "tcp.connection.rst",
+            "tcp.connection.syn",
+            "tcp.connection.synack",
+            "tcp.flags",
+            "tcp.flags.ack",
+            "tcp.len",
+            "udp.time_delta",
+            "dns.qry.qu",
+            "dns.qry.type",
+            "dns.retransmission",
+            "dns.retransmit_request",
+            "dns.retransmit_request_in",
+            "mqtt.conflag.cleansess",
+            "mqtt.conflags",
+            "mqtt.hdrflags",
+            "mqtt.len",
+            "mqtt.msg_decoded_as",
+            "mqtt.msgtype",
+            "mqtt.proto_len",
+            "mqtt.topic_len",
+            "mqtt.ver",
+            "mbtcp.len",
+            "mbtcp.trans_id"
+        ],
+        "edge_features": [
+            "arp.opcode",
+            "arp.hw.size",
+            "icmp.transmit_timestamp",
+            "icmp.unused",
+            "http.content_length",
+            "http.response",
+            "http.tls_port",
+            "tcp.connection.fin",
+            "tcp.connection.rst",
+            "tcp.connection.syn",
+            "tcp.connection.synack",
+            "tcp.flags",
+            "tcp.flags.ack",
+            "tcp.len",
+            "udp.time_delta",
+            "dns.qry.qu",
+            "dns.qry.type",
+            "dns.retransmission",
+            "dns.retransmit_request",
+            "dns.retransmit_request_in",
+            "mqtt.conflag.cleansess",
+            "mqtt.conflags",
+            "mqtt.hdrflags",
+            "mqtt.len",
+            "mqtt.msg_decoded_as",
+            "mqtt.msgtype",
+            "mqtt.proto_len",
+            "mqtt.topic_len",
+            "mqtt.ver",
+            "mbtcp.len",
+            "mbtcp.trans_id"
+        ],
+        "leakage_present": false,
+        "leaked_columns": {
+            "edges": [],
+            "nodes": []
+        }
+    },
+    "4_split_leakage": {
+        "ip_endpoint_overlap": {
+            "train_val": 296,
+            "train_test": 266,
+            "val_test": 68
+        }
+    },
+    "5_feature_shapes": {
+        "node_feature_dimension": 31,
+        "edge_feature_dimension": 31,
+        "total_nodes": 216207,
+        "total_edges": 543549
+    },
+    "6_class_coverage": {
+        "train": {
+            "MITM": 7,
+            "DDoS_UDP": 45562,
+            "Ransomware": 2191,
+            "Normal": 120613,
+            "Password": 31204,
+            "DDoS_HTTP": 26585,
+            "MIXED_ATTACK": 601,
+            "Port_Scanning": 14372,
+            "XSS": 2062,
+            "Backdoor": 2477,
+            "DDoS_TCP": 35043,
+            "Vulnerability_scanner": 2074,
+            "SQL_injection": 6252,
+            "Fingerprinting": 348,
+            "Uploading": 10671,
+            "DDoS_ICMP": 81503
+        },
+        "val": {
+            "MITM": 2,
+            "DDoS_UDP": 9759,
+            "Ransomware": 746,
+            "Normal": 25264,
+            "Password": 6743,
+            "DDoS_HTTP": 5676,
+            "Port_Scanning": 2996,
+            "XSS": 413,
+            "MIXED_ATTACK": 3,
+            "Backdoor": 249,
+            "DDoS_TCP": 7509,
+            "Vulnerability_scanner": 451,
+            "SQL_injection": 1295,
+            "Fingerprinting": 41,
+            "Uploading": 2284,
+            "DDoS_ICMP": 17463
+        },
+        "test": {
+            "DDoS_UDP": 9757,
+            "MITM": 1,
+            "Ransomware": 225,
+            "Normal": 25760,
+            "Password": 6615,
+            "DDoS_HTTP": 5648,
+            "MIXED_ATTACK": 25,
+            "Port_Scanning": 3076,
+            "XSS": 485,
+            "Backdoor": 384,
+            "DDoS_TCP": 7509,
+            "Vulnerability_scanner": 453,
+            "SQL_injection": 1332,
+            "Fingerprinting": 47,
+            "Uploading": 2309,
+            "DDoS_ICMP": 17464
+        }
+    },
+    "7_graph_sanity": {
+        "has_nans": false,
+        "has_infs": false,
+        "issues": [],
+        "is_sane": true
+    }
+}

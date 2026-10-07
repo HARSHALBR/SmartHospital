@@ -1,0 +1,47 @@
+{
+    "raw_records": 100000,
+    "unique_flow_edges": 72919,
+    "avg_records_per_flow": 1.3713846871185835,
+    "median_records_per_flow": 1.0,
+    "max_records_per_flow": 2125.0,
+    "normal_edges": 48113,
+    "attack_edges": 24806,
+    "mixed_edges": 12,
+    "binary_edge_distribution": {
+        "0": 48113,
+        "1": 24806
+    },
+    "multiclass_label_distribution": {
+        "Normal": 48124,
+        "MITM": 22,
+        "DDoS_ICMP": 5348,
+        "DDoS_TCP": 2295,
+        "DDoS_UDP": 5526,
+        "Vulnerability_scanner": 1900,
+        "Fingerprinting": 17,
+        "Backdoor": 97,
+        "Ransomware": 69,
+        "Uploading": 1538,
+        "Port_Scanning": 903,
+        "XSS": 635,
+        "Password": 2153,
+        "DDoS_HTTP": 2194,
+        "SQL_injection": 2098
+    },
+    "temporal_windows": 4,
+    "unique_nodes": 8218,
+    "leakage_verification": {
+        "flow_columns_used": [
+            "ip.src_host",
+            "ip.dst_host",
+            "tcp.srcport",
+            "tcp.dstport",
+            "udp.port",
+            "udp.stream"
+        ],
+        "are_flow_cols_in_features": false,
+        "are_targets_in_features": false,
+        "node_feature_dimension": 74,
+        "edge_feature_dimension": 37
+    }
+}

@@ -1,0 +1,12 @@
+PROTOTYPE REPORT
+{
+  "row_counts": 100000,
+  "unique_flows": 49837,
+  "flow_window_edges": 72513,
+  "normal_edges": 52706,
+  "attack_edges": 19791,
+  "mixed_edges": 16,
+  "average_packets_per_edge": 1.302083764290541,
+  "median_packets_per_edge": 1.0,
+  "maximum_packets_per_edge": 157
+}

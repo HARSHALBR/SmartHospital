@@ -1,0 +1,14 @@
+{
+    "Client_1": {
+        "Categories": "Surgery",
+        "Notes": 979
+    },
+    "Client_2": {
+        "Categories": "Consult / Cardiovascular",
+        "Notes": 81
+    },
+    "Client_3": {
+        "Categories": "Psychiatry / Misc",
+        "Notes": 1297
+    }
+}

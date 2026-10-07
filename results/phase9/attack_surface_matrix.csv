@@ -1,0 +1,8 @@
+Asset,Attacker,Attack,Protection,Status
+Raw clinical text,Server,Direct exposure,Data locality,Demonstrated
+IoT raw data,Server,Direct exposure,Data locality,Demonstrated
+Model update,Curious server,Update inspection,None fully established,Risk
+Model update,Malicious client,Sign-flip poisoning,Coordinate-wise Median,Partially mitigated
+Client update,Server,Inference/reconstruction,DP preliminary,Partially mitigated
+Aggregate update,Server,Individual update inference,Secure aggregation,Mitigated in simulation
+Training membership,Attacker,Membership inference,Not directly evaluated,Open issue

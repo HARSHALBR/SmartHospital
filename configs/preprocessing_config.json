@@ -1,0 +1,35 @@
+{
+    "targets": [
+        "Attack_label",
+        "Attack_type"
+    ],
+    "graph_identifiers": [
+        "ip.src_host",
+        "ip.dst_host",
+        "udp.stream",
+        "arp.src.proto_ipv4",
+        "arp.dst.proto_ipv4",
+        "mbtcp.unit_id"
+    ],
+    "excluded_from_model_features": [
+        "tcp.seq",
+        "tcp.ack",
+        "tcp.ack_raw",
+        "icmp.seq_le",
+        "icmp.checksum",
+        "tcp.checksum"
+    ],
+    "high_cardinality": [
+        "tcp.payload",
+        "tcp.options",
+        "http.request.full_uri",
+        "http.request.uri.query",
+        "dns.qry.name",
+        "mqtt.msg",
+        "mqtt.topic",
+        "http.file_data"
+    ],
+    "temporal": [
+        "frame.time"
+    ]
+}

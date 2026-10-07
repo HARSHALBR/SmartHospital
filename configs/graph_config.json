@@ -1,0 +1,8 @@
+{
+    "window_strategy": "record_count",
+    "records_per_window": 150000,
+    "node_features_aggregation": "mean",
+    "edge_features_aggregation": "mean",
+    "label_aggregation_binary": "max",
+    "label_aggregation_multiclass": "mode"
+}

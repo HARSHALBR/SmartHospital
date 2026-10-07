@@ -1,0 +1,30 @@
+{
+    "rows_processed": 100000,
+    "chunk_size": 25000,
+    "processing_time_seconds": 13.22,
+    "peak_ram_mb": 0.0,
+    "num_windows": 4,
+    "total_unique_nodes": 8218,
+    "total_edges": 8275,
+    "node_feature_dimension": 80,
+    "edge_feature_dimension": 40,
+    "binary_label_distribution": {
+        "0": 32,
+        "1": 8243
+    },
+    "multiclass_label_distribution": {
+        "Normal": 43,
+        "MITM": 14,
+        "DDoS_ICMP": 5348,
+        "DDoS_TCP": 2295,
+        "DDoS_UDP": 559,
+        "Vulnerability_scanner": 6,
+        "Backdoor": 3,
+        "DDoS_HTTP": 4,
+        "XSS": 1,
+        "Password": 1,
+        "Fingerprinting": 1
+    },
+    "mixed_label_edges": 12,
+    "output_size_on_disk_mb": 11.78
+}
