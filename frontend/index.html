@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8fa">
+  <meta name="description" content="SmartHospital research demonstration for federated learning and multi-modal IoT anomaly detection.">
+  <title>SmartHospital — Research platform</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./simulation.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+      <a class="brand" href="#overview" aria-label="SmartHospital home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M14 5h4v8h8v4h-8v8h-4v-8H6v-4h8z" fill="currentColor"/><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/></svg></span>
+        <span><strong>SmartHospital</strong><small>Research platform</small></span>
+      </a>
+      <div class="nav-caption">WORKSPACE</div>
+      <nav class="nav-list">
+        <a href="#overview" class="nav-link active" data-route="overview"><span class="nav-icon">⌂</span>Overview</a>
+        <a href="#data" class="nav-link" data-route="data"><span class="nav-icon">▦</span>Research data</a>
+        <a href="#architecture" class="nav-link" data-route="architecture"><span class="nav-icon">⌘</span>Method & pipeline</a>
+        <a href="#federation" class="nav-link" data-route="federation"><span class="nav-icon">◎</span>Federated learning</a>
+        <a href="#security" class="nav-link" data-route="security"><span class="nav-icon">◇</span>Security & privacy</a>
+        <a href="#simulation" class="nav-link" data-route="simulation"><span class="nav-icon">▷</span>Simulation</a>
+        <a href="#results" class="nav-link" data-route="results"><span class="nav-icon">↗</span>Results</a>
+        <a href="#about" class="nav-link" data-route="about"><span class="nav-icon">ⓘ</span>About the study</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="research-card"><span class="eyebrow">RESEARCH SCOPE</span><strong>Demonstration only</strong><p>Proxy datasets · 3 simulated edge clients</p></div>
+        <div class="sidebar-meta"><span class="live-dot"></span><span id="api-label">Connecting to data service…</span></div>
+      </div>
+    </aside>
+    <div class="main-column">
+      <header class="topbar">
+        <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumbs"><span>SmartHospital</span><span class="crumb-sep">/</span><strong id="page-crumb">Overview</strong></div>
+        <div class="top-actions"><span class="demo-pill"><span></span> RESEARCH DEMO</span><button class="icon-button" id="refresh" aria-label="Refresh research data" title="Refresh data">↻</button><div class="avatar" aria-label="Research workspace">SH</div></div>
+      </header>
+      <main id="main" tabindex="-1"><div id="page-content" class="page-content"><div class="loading-state"><span class="spinner"></span>Loading verified research artifacts…</div></div></main>
+      <footer class="footer"><span>SmartHospital Research Demonstration</span><span>Frozen experimental artifacts · Phases 1–9</span></footer>
+    </div>
+  </div>
+  <div class="scrim" id="scrim"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./simulation-service.js" defer></script>
+  <script src="./simulation.js" defer></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
