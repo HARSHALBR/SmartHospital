@@ -11,14 +11,16 @@ import AnomalyDetection from './pages/AnomalyDetection';
 import SecurityPrivacy from './pages/SecurityPrivacy';
 import Results from './pages/Results';
 import About from './pages/About';
+import HospitalSimulation from './pages/HospitalSimulation';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* Main 8 Consolidated Routes */}
+          {/* Main Consolidated Routes */}
           <Route index element={<Dashboard />} />
+          <Route path="simulation" element={<HospitalSimulation />} />
           <Route path="data" element={<HospitalData />} />
           <Route path="semantic" element={<SemanticVectorization />} />
           <Route path="federated-graph" element={<FederatedGraphLearning />} />
@@ -34,7 +36,6 @@ function App() {
           <Route path="cent-vs-fed" element={<Navigate to="/federated-graph" replace />} />
           <Route path="attack" element={<Navigate to="/anomaly-detection" replace />} />
           <Route path="inference" element={<Navigate to="/anomaly-detection" replace />} />
-          <Route path="simulation" element={<Navigate to="/anomaly-detection" replace />} />
           <Route path="non-iid" element={<Navigate to="/security-privacy" replace />} />
           <Route path="fedprox" element={<Navigate to="/security-privacy" replace />} />
           <Route path="personalization" element={<Navigate to="/security-privacy" replace />} />

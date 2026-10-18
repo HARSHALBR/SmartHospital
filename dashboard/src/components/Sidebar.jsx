@@ -2,12 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, Database, FileText, Network, 
-  AlertTriangle, Shield, Activity, Info 
+  AlertTriangle, Shield, Activity, Info, Cpu 
 } from 'lucide-react';
 import clsx from 'clsx';
 
 const navItems = [
   { name: 'Overview', path: '/', icon: LayoutDashboard },
+  { name: 'Simulation Center', path: '/simulation', icon: Cpu },
   { name: 'Hospital Data', path: '/data', icon: Database },
   { name: 'Semantic Vectorization', path: '/semantic', icon: FileText },
   { name: 'Federated Graph Learning', path: '/federated-graph', icon: Network },
