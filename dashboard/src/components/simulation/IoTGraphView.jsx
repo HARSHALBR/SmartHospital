@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  AlertTriangle, ShieldCheck, Layers, Info
+  AlertTriangle, ShieldCheck, Layers, Info, RotateCcw
 } from 'lucide-react';
+import { computeNeighborhoods } from './graphUtils';
 import clsx from 'clsx';
 
 // Conceptual IoT Entities with topological positions
@@ -39,7 +40,7 @@ const GRAPH_EDGES = [
 
 const TIME_WINDOWS = ['5s Snapshot', '10s Slicing', '30s Window', '60s Window'];
 
-export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
+export default function IoTGraphView({ isSuspicious, onToggleScenario, onResetScenario }) {
   const [selectedWindow, setSelectedWindow] = useState('10s Slicing');
   const [selectedEntity, setSelectedEntity] = useState({ type: 'node', id: 'gw-icu' });
 
@@ -51,6 +52,11 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
   const selectedEdge = selectedEntity.type === 'edge'
     ? GRAPH_EDGES.find(e => e.id === selectedEntity.id) || GRAPH_EDGES[0]
     : null;
+
+  // Compute 1-hop and 2-hop neighborhoods from graph adjacency
+  const neighborhoods = selectedNode
+    ? computeNeighborhoods(selectedNode.id, GRAPH_EDGES)
+    : { oneHop: [], twoHop: [] };
 
   // Window scaling multiplier for illustrative statistics
   const windowMultiplier = selectedWindow === '5s Snapshot' ? 0.5 :
@@ -126,6 +132,17 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
                 </>
               )}
             </button>
+
+            {onResetScenario && (
+              <button
+                onClick={onResetScenario}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 transition-colors"
+                title="Reset Scenario to Normal"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
+                <span>Reset</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -191,6 +208,8 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
               {GRAPH_NODES.map(node => {
                 const isSusp = isNodeSuspicious(node.id);
                 const isSelected = selectedEntity.type === 'node' && selectedEntity.id === node.id;
+                const isOneHop = selectedEntity.type === 'node' && neighborhoods.oneHop.includes(node.id);
+                const isTwoHop = selectedEntity.type === 'node' && neighborhoods.twoHop.includes(node.id);
 
                 return (
                   <g
@@ -208,6 +227,32 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
                         stroke="#818cf8"
                         strokeWidth="2.5"
                         strokeDasharray="4 2"
+                      />
+                    )}
+
+                    {/* 1-Hop Neighbor indicator */}
+                    {!isSelected && isOneHop && (
+                      <circle
+                        cx={node.x}
+                        cy={node.y}
+                        r="16"
+                        fill="none"
+                        stroke="#38bdf8"
+                        strokeWidth="2"
+                        strokeDasharray="2 2"
+                      />
+                    )}
+
+                    {/* 2-Hop Neighbor indicator */}
+                    {!isSelected && isTwoHop && (
+                      <circle
+                        cx={node.x}
+                        cy={node.y}
+                        r="15"
+                        fill="none"
+                        stroke="#c084fc"
+                        strokeWidth="1.5"
+                        strokeDasharray="3 2"
                       />
                     )}
 
@@ -233,9 +278,9 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
                     <text
                       x={node.x}
                       y={node.y + 20}
-                      fill={isSelected ? "#ffffff" : "#cbd5e1"}
+                      fill={isSelected ? "#ffffff" : isOneHop ? "#38bdf8" : isTwoHop ? "#e9d5ff" : "#cbd5e1"}
                       fontSize="8.5"
-                      fontWeight={isSelected ? "bold" : "normal"}
+                      fontWeight={isSelected || isOneHop ? "bold" : "normal"}
                       textAnchor="middle"
                     >
                       {node.label}
@@ -247,14 +292,22 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
 
             {/* Bottom Legend */}
             <div className="p-3 bg-slate-900 border-t border-slate-800 text-[11px] text-slate-300 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full border-2 border-indigo-400 inline-block" />
+                  Selected
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full border border-sky-400 border-dashed inline-block" />
+                  1-Hop Direct
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full border border-purple-400 border-dashed inline-block" />
+                  2-Hop GraphSAGE
+                </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-slate-800 border border-sky-400 inline-block" />
                   Gateway Hub
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-slate-800 border border-slate-400 inline-block" />
-                  Medical Endpoint
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-indigo-600 inline-block" />
@@ -301,9 +354,27 @@ export default function IoTGraphView({ isSuspicious, onToggleScenario }) {
 
                 <div className="space-y-2 text-xs mt-4 border-t border-slate-100 pt-3">
                   <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500">Graph Degree:</span>
+                    <span className="text-slate-500">Graph Degree (Direct Links):</span>
                     <span className="font-mono font-bold text-slate-800">
-                      {GRAPH_EDGES.filter(e => e.source === selectedNode.id || e.target === selectedNode.id).length} Connected Edges
+                      {neighborhoods.oneHop.length} Links
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col py-1 border-b border-slate-100">
+                    <span className="text-slate-500 text-[11px] font-semibold">1-Hop Neighbors (Adjacency):</span>
+                    <span className="font-mono text-slate-700 text-[11px] mt-0.5">
+                      {neighborhoods.oneHop.length > 0
+                        ? neighborhoods.oneHop.map(id => GRAPH_NODES.find(n => n.id === id)?.label || id).join(', ')
+                        : 'None'}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col py-1 border-b border-slate-100">
+                    <span className="text-slate-500 text-[11px] font-semibold">2-Hop Neighbors (GraphSAGE Field):</span>
+                    <span className="font-mono text-purple-700 font-semibold text-[11px] mt-0.5">
+                      {neighborhoods.twoHop.length > 0
+                        ? neighborhoods.twoHop.map(id => GRAPH_NODES.find(n => n.id === id)?.label || id).join(', ')
+                        : 'None'}
                     </span>
                   </div>
 

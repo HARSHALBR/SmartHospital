@@ -226,6 +226,84 @@ export default function ResearchResultsLimitations() {
               </span>
             </div>
 
+            {/* Non-IID & FedProx Card */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/70">
+              <span className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider block mb-1">
+                Phase 8.1 & 8.2 Client Heterogeneity
+              </span>
+              <h4 className="font-bold text-slate-900 text-sm mb-3">Non-IID Drift & FedProx</h4>
+
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-slate-500">IID Benchmark F1:</span>
+                  <strong className="font-mono text-slate-900">0.9926</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Severe Non-IID F1:</span>
+                  <strong className="font-mono text-amber-600">0.9882</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">FedProx Stabilizer (μ = 0.01):</span>
+                  <strong className="font-mono text-emerald-700">0.9926</strong>
+                </div>
+              </div>
+              <span className="text-[10px] text-slate-400 mt-3 block italic">
+                Source: phase8_1 and phase8_2 summary records
+              </span>
+            </div>
+
+            {/* Byzantine Resilience Card */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/70">
+              <span className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider block mb-1">
+                Phase 8.4 Adversarial Attacks
+              </span>
+              <h4 className="font-bold text-slate-900 text-sm mb-3">Byzantine Sign-Flip Defense</h4>
+
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Median Clean Baseline F1:</span>
+                  <strong className="font-mono text-slate-900">0.9926</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Median Under Attack (C1):</span>
+                  <strong className="font-mono text-emerald-700">0.9918 (Robust)</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">FedAvg Under Attack (C1):</span>
+                  <strong className="font-mono text-rose-600">0.4000 (Degraded)</strong>
+                </div>
+              </div>
+              <span className="text-[10px] text-slate-400 mt-3 block italic">
+                Source: phase8_4 byzantine summary evaluations
+              </span>
+            </div>
+
+            {/* Privacy & Secure Aggregation Card */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/70">
+              <span className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider block mb-1">
+                Phase 9 Security Overhead
+              </span>
+              <h4 className="font-bold text-slate-900 text-sm mb-3">Secure Aggregation & DP</h4>
+
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Pairwise Masking Payload:</span>
+                  <strong className="font-mono text-slate-900">1.0x (Zero expansion)</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Secure Agg Compute Time:</span>
+                  <strong className="font-mono text-slate-900">0.00063s</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">DP Noise Scale (Gaussian):</span>
+                  <strong className="font-mono text-indigo-700">σ = 0.1</strong>
+                </div>
+              </div>
+              <span className="text-[10px] text-slate-400 mt-3 block italic">
+                Source: phase9 privacy and secure aggregation benchmarks
+              </span>
+            </div>
+
           </div>
         </div>
       ) : null}

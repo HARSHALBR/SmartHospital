@@ -232,7 +232,7 @@ export default function FederatedPlayground() {
               )}
             >
               {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-              {isPlaying ? 'Pause' : 'Start Round'}
+              {isPlaying ? 'Pause' : (stageIndex > 0 ? 'Resume' : 'Start Round')}
             </button>
 
             <button

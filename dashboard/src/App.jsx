@@ -12,6 +12,7 @@ import SecurityPrivacy from './pages/SecurityPrivacy';
 import Results from './pages/Results';
 import About from './pages/About';
 import HospitalSimulation from './pages/HospitalSimulation';
+import NetworkSimulation from './pages/NetworkSimulation';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           {/* Main Consolidated Routes */}
           <Route index element={<Dashboard />} />
           <Route path="simulation" element={<HospitalSimulation />} />
+          <Route path="network-simulation" element={<NetworkSimulation />} />
           <Route path="data" element={<HospitalData />} />
           <Route path="semantic" element={<SemanticVectorization />} />
           <Route path="federated-graph" element={<FederatedGraphLearning />} />

@@ -2,12 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, Database, FileText, Network, 
-  AlertTriangle, Shield, Activity, Info, Cpu 
+  AlertTriangle, Shield, Activity, Info, Cpu, Radio
 } from 'lucide-react';
 import clsx from 'clsx';
 
 const navItems = [
   { name: 'Overview', path: '/', icon: LayoutDashboard },
+  { name: 'Live Network Sim', path: '/network-simulation', icon: Radio },
   { name: 'Simulation Center', path: '/simulation', icon: Cpu },
   { name: 'Hospital Data', path: '/data', icon: Database },
   { name: 'Semantic Vectorization', path: '/semantic', icon: FileText },

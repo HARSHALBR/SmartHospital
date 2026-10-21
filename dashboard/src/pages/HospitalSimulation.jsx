@@ -128,7 +128,8 @@ export default function HospitalSimulation() {
           <section id="section-network" aria-labelledby="section-network-title">
             <HospitalNetworkSim 
               isSuspicious={isSuspiciousScenario} 
-              onToggleScenario={toggleScenario} 
+              onToggleScenario={toggleScenario}
+              onResetScenario={() => setIsSuspiciousScenario(false)}
             />
           </section>
         )}
@@ -138,7 +139,8 @@ export default function HospitalSimulation() {
           <section id="section-graph" aria-labelledby="section-graph-title">
             <IoTGraphView 
               isSuspicious={isSuspiciousScenario} 
-              onToggleScenario={toggleScenario} 
+              onToggleScenario={toggleScenario}
+              onResetScenario={() => setIsSuspiciousScenario(false)}
             />
           </section>
         )}

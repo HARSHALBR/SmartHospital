@@ -251,7 +251,7 @@ const NETWORK_LINKS = [
   { from: 'hosp-c-gw', to: 'hosp-core' }
 ];
 
-export default function HospitalNetworkSim({ isSuspicious, onToggleScenario }) {
+export default function HospitalNetworkSim({ isSuspicious, onToggleScenario, onResetScenario }) {
   const [isRunning, setIsRunning] = useState(true);
   const [selectedNodeId, setSelectedNodeId] = useState('hosp-a-pump');
   const [tick, setTick] = useState(0);
@@ -271,6 +271,7 @@ export default function HospitalNetworkSim({ isSuspicious, onToggleScenario }) {
     setIsRunning(false);
     setTick(0);
     setSelectedNodeId('hosp-a-pump');
+    if (onResetScenario) onResetScenario();
   };
 
   // Node traffic characteristics under current simulation scenario
@@ -334,7 +335,7 @@ export default function HospitalNetworkSim({ isSuspicious, onToggleScenario }) {
               )}
             >
               {isRunning ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-              {isRunning ? 'Pause Sim' : 'Start Simulation'}
+              {isRunning ? 'Pause Sim' : (tick > 0 ? 'Resume Sim' : 'Start Simulation')}
             </button>
 
             <button
