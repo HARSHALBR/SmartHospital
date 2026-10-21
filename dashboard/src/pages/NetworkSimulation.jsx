@@ -1134,19 +1134,6 @@ export default function NetworkSimulation() {
           </div>
         )}
       </div>
-
-      {/* Faculty Presentation Instructions & Architecture Summary */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs text-slate-400">
-        <div className="flex items-center gap-2 text-white font-bold mb-1.5">
-          <Info className="w-4 h-4 text-indigo-400" />
-          <span>Faculty Demonstration Flow (2-Minute Walkthrough)</span>
-        </div>
-        <ol className="list-decimal list-inside space-y-1 text-slate-300">
-          <li><strong>Step 1: Baseline Verification:</strong> Click <span className="text-emerald-400 font-bold">"Send Normal Packet"</span>. Follow the 6-step pipeline (<span className="text-indigo-300">CREATED &rarr; ENCRYPTED &rarr; IN TRANSIT &rarr; RECEIVED &rarr; INSPECTING &rarr; VERDICT</span>), observe the green packet travel, and verify that the rule engine confirms it within normal limits (&lt; 5.0 pkt/s).</li>
-          <li><strong>Step 2: Anomaly Injection & DPI Inspection:</strong> Click <span className="text-rose-400 font-bold">"Inject Demo Anomaly"</span>. Observe the high-rate burst travel from Hospital C, the amber inspection scanner pulse at the Gateway, and the prominent red <span className="text-rose-400 font-bold">"ANOMALY DETECTED"</span> alert trigger, turning the conduit red and quarantining the uplink.</li>
-          <li><strong>Step 3: Reset & Clear:</strong> Click <span className="text-indigo-400 font-bold">"Reset Simulation"</span> to cancel active operations, restore clean topology, baseline counters, and clear quarantined states.</li>
-        </ol>
-      </div>
     </div>
   );
 }
