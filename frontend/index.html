@@ -41,7 +41,15 @@
       <header class="topbar">
         <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
         <div class="breadcrumbs"><span>SmartHospital</span><span class="crumb-sep">/</span><strong id="page-crumb">Overview</strong></div>
-        <div class="top-actions"><span class="demo-pill"><span></span> RESEARCH DEMO</span><button class="icon-button" id="refresh" aria-label="Refresh research data" title="Refresh data">↻</button><div class="avatar" aria-label="Research workspace">SH</div></div>
+        <div class="top-actions">
+          <a href="http://localhost:5173/network-simulation" style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:#1e293b;color:#38bdf8;border:1px solid #334155;border-radius:999px;font-size:11px;font-weight:700;text-decoration:none;margin-right:8px" title="Open Interactive Simulation Dashboard">
+            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#38bdf8"></span>
+            Live Network Sim :5173 ↗
+          </a>
+          <span class="demo-pill"><span></span> RESEARCH DEMO</span>
+          <button class="icon-button" id="refresh" aria-label="Refresh research data" title="Refresh data">↻</button>
+          <div class="avatar" aria-label="Research workspace">SH</div>
+        </div>
       </header>
       <main id="main" tabindex="-1"><div id="page-content" class="page-content"><div class="loading-state"><span class="spinner"></span>Loading verified research artifacts…</div></div></main>
       <footer class="footer"><span>SmartHospital Research Demonstration</span><span>Frozen experimental artifacts · Phases 1–9</span></footer>

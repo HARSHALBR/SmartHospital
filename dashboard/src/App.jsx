@@ -24,7 +24,7 @@ function App() {
           <Route path="simulation" element={<HospitalSimulation />} />
           <Route path="network-simulation" element={<NetworkSimulation />} />
           <Route path="data" element={<HospitalData />} />
-          <Route path="semantic" element={<SemanticVectorization />} />
+          <Route path="semantic" element={<Navigate to="/data" replace />} />
           <Route path="federated-graph" element={<FederatedGraphLearning />} />
           <Route path="anomaly-detection" element={<AnomalyDetection />} />
           <Route path="security-privacy" element={<SecurityPrivacy />} />
@@ -33,7 +33,7 @@ function App() {
 
           {/* Legacy route redirects/mappings */}
           <Route path="dataset" element={<Navigate to="/data" replace />} />
-          <Route path="clinical" element={<Navigate to="/semantic" replace />} />
+          <Route path="clinical" element={<Navigate to="/data" replace />} />
           <Route path="graph" element={<Navigate to="/federated-graph" replace />} />
           <Route path="cent-vs-fed" element={<Navigate to="/federated-graph" replace />} />
           <Route path="attack" element={<Navigate to="/anomaly-detection" replace />} />
